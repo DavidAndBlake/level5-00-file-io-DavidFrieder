@@ -27,14 +27,14 @@ public class IntroToFileIO {
 		
 		//Read from a file one line at a time
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("src/_00_Intro_To_File_Input_and_Output/test.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("src/_00_Intro_To_File_Input_and_Output/test.txt.txt"));
 			
 			String line = br.readLine();
 			while(line != null){
 				System.out.println(line);
 				line = br.readLine();
 			}
-			
+
 			br.close();
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block

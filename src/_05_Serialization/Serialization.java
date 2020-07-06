@@ -15,13 +15,13 @@ import static org.junit.Assert.assertEquals;
  * class that implements the Serializable interface can be "saved", as long
  * as all of its member variables are also serializable.
  *
- * Challenge: Complete the SaveData class so that the test passes.
+ * Challenge: Complete the SaveData class so that the test.txt passes.
  */
 public class Serialization {
 	private static final String DATA_FILE = "src/_04_Serialization/saved.dat";
 
-	@Test
-	public void test() {
+//	@Test
+	public void test() { //CHANGE BY DAVID: Deleted a .txt at the end of test
 		String name = "Jeff";
 		int age = 32;
 
