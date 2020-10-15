@@ -1,11 +1,11 @@
 package Module_0_Checkpoint;
 
-import _05_Serialization.SaveData;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,11 +17,10 @@ public class TextEditor implements ActionListener
     private JPanel buttonPanel = new JPanel();
     private JButton saveButton = new JButton();
     private JButton loadButton = new JButton();
-    JTextArea textArea = new JTextArea(30,50);
+    JTextArea textArea = new JTextArea(30, 50);
     static double screenWidth;
     static double screenHeight;
-    FileWriter fw = new FileWriter("/Users/davidfrieder/Desktop/level5-00-file-io-DavidFrieder/src/Module_0_Checkpoint/TextFile.txt");
-    FileReader fr = new FileReader("/Users/davidfrieder/Desktop/level5-00-file-io-DavidFrieder/src/Module_0_Checkpoint/TextFile.txt");
+
 
 
     public static void main(String[] args) throws IOException
@@ -40,38 +39,59 @@ public class TextEditor implements ActionListener
         frame.add(panel);
         panel.add(buttonPanel);
         panel.add(textArea);
-        panel.setSize(frameWidth * 2/3, frameHeight);
+        panel.setSize(frameWidth * 2 / 3, frameHeight);
         panel.setBackground(Color.white);
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
-        buttonPanel.setSize(frameWidth * 1/3, frameHeight);
+        buttonPanel.setSize(frameWidth * 1 / 3, frameHeight);
         buttonPanel.setBackground(Color.gray);
         saveButton.setText("Save");
         loadButton.setText("Load");
         saveButton.addActionListener(this);
         loadButton.addActionListener(this);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.pack();
-
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-       if (e.getSource()== saveButton){
-           try
-           {
-               fw.write(textArea.getText());
-           } catch (IOException ex)
-           {
-               ex.printStackTrace();
-           }
-       }
-       if (e.getSource()== loadButton){
-           int c 
-            textArea.setText(fr);
-       }
+        if (e.getSource() == saveButton)
+        {
+            try
+            {
+                FileWriter fw = new FileWriter("/Users/davidfrieder/Desktop/level5-00-file-io-DavidFrieder/src/Module_0_Checkpoint/TextFile.txt");
+                System.out.println(textArea.getText());
+                fw.write(textArea.getText());
+                fw.close();
+            } catch (IOException ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+        if (e.getSource() == loadButton)
+        {
+            try
+            {
+                String text = "";
+                BufferedReader br = new BufferedReader(new FileReader("/Users/davidfrieder/Desktop/level5-00-file-io-DavidFrieder/src/Module_0_Checkpoint/TextFile.txt"));
+                String word = br.readLine();
+                while (word != null){
+                System.out.println(word);
+
+                    text += word + "\n";
+                    word = br.readLine();
+//                    System.out.println("whee");
+                }
+                textArea.setText(text);
+                br.close();
+            } catch (IOException ex)
+            {
+                ex.printStackTrace();
+            }
+
+        }
     }
 }
 //  1.  Create a new Java class called TextEditor
